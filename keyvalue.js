@@ -32,7 +32,7 @@
 	    ['f', 'open %s', 'current', 'http://scratch.mit.edu'],
 	    [' ', 'open Scratch user page %s', 'user', 'Paddle2See'],
 	    [' ', 'open Pastebin user page %s', 'paste', 'StarStudios23'],
-	    [' ', 'AJAX GET %s', 'ajaxget', 'https://api.keyvalue.xyz/new/scratchkey'],
+	    ['r', 'AJAX GET %s', 'ajaxget', 'https://api.keyvalue.xyz/new/scratchkey'],
 	    ['-'],
 	    ['r', 'tab name', 'tabName'],
 	    [' ', 'set tab name to %s', 'set', 'Tab']
