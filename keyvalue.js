@@ -19,14 +19,15 @@
 
     var descriptor = {
         blocks: [
-	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myVariable'],
-	    ['R', 'Get Cloud Variable %s', 'get_cloud_variable', 'myVariable'],
-	    ['R', 'Set Cloud Variable %s', 'set_cloud_variable', 'myVariable'],
+	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myName'],
+	    ['R', 'Get Cloud Variable %s', 'get_cloud_variable', 'variableURL'],
+	    ['w', 'Set Cloud Variable %s', 'set_cloud_variable', 'variableURL'],
         ],
-
+/*
 	menus: {
 	    k: ['editor', 'player', 'fullscreen']
 	}
+*/
     };
 
    ext.create_cloud_variable = function(varname, callback) {
@@ -35,10 +36,7 @@
 			  type: "POST",
               url: 'https://api.keyvalue.xyz/new/'+varname,
 			  data: "",
-              //dataType: 'jsonp',
               success: function( variable_url ) {
-                  // Got the data - parse it and return the temperature
-                  //temperature = weather_data['main']['temp'];
                   callback(variable_url);
               }
         });
@@ -49,12 +47,8 @@
         $.ajax({
 			  type: "GET",
               url: 'https://api.keyvalue.xyz/'+varname,
-			  data: "",
-              //dataType: 'jsonp',
-              success: function( variable_url ) {
-                  // Got the data - parse it and return the temperature
-                  //temperature = weather_data['main']['temp'];
-                  callback(variable_url);
+              success: function( variable_value ) {
+                  callback(variable_value);
               }
         });
     };
@@ -65,10 +59,7 @@
 			  type: "POST",
               url: 'https://api.keyvalue.xyz/'+varname+'/'+value,
 			  data: "",
-              //dataType: 'jsonp',
               success: function( variable_url ) {
-                  // Got the data - parse it and return the temperature
-                  //temperature = weather_data['main']['temp'];
                   callback(variable_url);
               }
         });
@@ -78,5 +69,5 @@
       return { status:2, msg:'Ready' };
     };
 	
-    ScratchExtensions.register('WebExt', descriptor, ext);
+    ScratchExtensions.register('CloudVariable', descriptor, ext);
 })({});
