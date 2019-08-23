@@ -32,7 +32,7 @@
 	    ['f', 'open %s', 'current', 'http://scratch.mit.edu'],
 	    [' ', 'open Scratch user page %s', 'user', 'Paddle2See'],
 	    [' ', 'open Pastebin user page %s', 'paste', 'StarStudios23'],
-	    ['r', 'AJAX GET %s', 'ajaxget', 'https://api.keyvalue.xyz/new/scratchkey'],
+	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myVariable'],
 	    ['-'],
 	    ['r', 'tab name', 'tabName'],
 	    [' ', 'set tab name to %s', 'set', 'Tab']
@@ -81,17 +81,21 @@
     ext.user = function(username) {
 	window.open('http://scratch.mit.edu/users/' + username, '_blank');
     };
-    ext.ajaxget = function(ajaxurl) {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				//document.getElementById("demo").innerHTML = this.responseText;
-				return this.responseText;
-			}
-		};
-		xhttp.open("GET", ajaxurl, true);
-		xhttp.send();		
+
+   ext.create_cloud_variable = function(varname, callback) {
+        // Make an AJAX call to the keyvalue.xyz API
+        $.ajax({
+			  type: "POST",
+              url: 'http://api.keyvalue.xyz/new/'+varname,
+              //dataType: 'jsonp',
+              success: function( variable_url ) {
+                  // Got the data - parse it and return the temperature
+                  //temperature = weather_data['main']['temp'];
+                  callback(variable_url);
+              }
+        });
     };
+
     ext.paste = function(username) {
 	window.open('http://pastebin.com/u/' + username, '_blank');
     };
@@ -102,5 +106,9 @@
 	document.title = name;
     };
 
+    ext._getStatus = function() {
+      return { status:2, msg:'Ready' };
+    };
+	
     ScratchExtensions.register('WebExt', descriptor, ext);
 })({});
