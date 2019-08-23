@@ -20,8 +20,8 @@
     var descriptor = {
         blocks: [
 	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myVariable'],
-	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myVariable'],
-	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myVariable'],
+	    ['R', 'Get Cloud Variable %s', 'get_cloud_variable', 'myVariable'],
+	    ['R', 'Set Cloud Variable %s', 'set_cloud_variable', 'myVariable'],
         ],
 
 	menus: {
