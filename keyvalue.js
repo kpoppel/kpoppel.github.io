@@ -21,7 +21,7 @@
         blocks: [
 	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myName'],
 	    ['R', 'Get Cloud Variable %s', 'get_cloud_variable', 'variableURL'],
-	    ['w', 'Set Cloud Variable %s', 'set_cloud_variable', 'variableURL'],
+	    ['w', 'Set Cloud Variable %s', 'set_cloud_variable', 'variableURL', 'value'],
         ],
 /*
 	menus: {
