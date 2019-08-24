@@ -37,7 +37,7 @@
               url: 'https://api.keyvalue.xyz/new/'+varname,
 			  data: "",
               success: function( variable_url ) {
-                  callback(variable_url);
+                  callback(variable_url.substring(25));
               }
         });
     };
