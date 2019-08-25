@@ -88,7 +88,7 @@
 
     ext.set_cloud_variable_in_list =  function(index, varname, value) {
         // Make an AJAX call to the keyvalue.xyz API
-		let encoded_value = encodeURIComponent((encodeURIComponent(value));
+		let encoded_value = encodeURIComponent(encodeURIComponent(value));
         $.ajax({
 			  type: "POST",
               url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname)+'/'+encoded_value,
