@@ -8,6 +8,7 @@
 // ==/UserScript==
 
 (function(ext) {
+//var myext = function(ext) {
     ext._shutdown = function() {};
 
     ext._getStatus = function() {
@@ -26,11 +27,11 @@
 	    ['R', '%s', 'get_cloud_variable', 'variableURL'],
 		
         ],
-/*
+
 	menus: {
-	    k: ['editor', 'player', 'fullscreen']
+//	    k: ['editor', 'player', 'fullscreen']
 	}
-*/
+
     };
 
    ext.create_cloud_variable = function(varname, callback) {
@@ -71,6 +72,16 @@
     ext._getStatus = function() {
       return { status:2, msg:'Ready' };
     };
+
+    ext.reload = function() {
+		ScratchExtensions.unregister('CloudVariable');
+		descriptor.blocks.push(['R', 'mynewvariable', get_cloud_variable, 'myVariable']);
+		descriptor.menus.k = ['editor', 'player', 'fullscreen'];
+		descriptor.blocks.push(['r', 'Menu! %m.k']);
+		ScratchExtensions.register('CloudVariable', descriptor, ext);
+	}	
 	
     ScratchExtensions.register('CloudVariable', descriptor, ext);
 })({});
+
+//(myext)({});
