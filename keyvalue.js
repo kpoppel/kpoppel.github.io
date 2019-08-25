@@ -73,6 +73,14 @@
         });
     };
 
+    ext.get_element_from_space_delimited_list =  function(index, varname) {
+		return varname.split(' ')[index-1];
+	}
+
+    ext.get_space_delimited_list_length =  function(varname) {
+		return varname.split(' ').length;
+	}
+
     ext.get_cloud_variable_from_list =  function(index, varname) {
         // Make an AJAX call to the keyvalue.xyz API
         $.ajax({
@@ -97,14 +105,6 @@
                   callback(variable_url);
               }
         });
-	}
-
-    ext.get_element_from_space_delimited_list =  function(index, varname) {
-		return varname.split(' ')[index-1];
-	}
-
-    ext.get_space_delimited_list_length =  function(varname) {
-		return varname.split(' ').length;
 	}
 
     ext._getStatus = function() {
