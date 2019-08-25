@@ -20,13 +20,13 @@
 
     var descriptor = {
         blocks: [
-	    ['R', '☁ New %s', 'create_cloud_variable', 'myName'],
+	    ['R', '☁ New %s', 'create_cloud_variable', 'name'],
 	    ['R', '☁ Get %s ', 'get_cloud_variable', 'variableURL'],
 	    ['w', '☁ Set %s to %s', 'set_cloud_variable', 'variableURL', 'value'],
-		['R', '☁ Get list element %n in %s', 'get_cloud_variable_from_list', 1, 'variableURL'],
-		['w', '☁ Set list element %n in %s to %s', 'set_cloud_variable_from_list', 1, 'variableURL', 'value'],
-		['r', 'Get list element %n in %s', 'get_element_from_space_delimited_list', 1, 'list'],
-		['r', 'Get list length of %s', 'get_space_delimited_list_length', 'list']
+		['R', '☁ Get list element %n in %s', 'get_cloud_variable_from_list', 1, 'varURLlist'],
+		['w', '☁ Set list element %n in %s to %s', 'set_cloud_variable_in_list', 1, 'varURLlist', 'value'],
+		['r', 'Get list element %n in %s', 'get_element_from_space_delimited_list', 1, 'varURLlist'],
+		['r', 'Get list length of %s', 'get_space_delimited_list_length', 'varURLlist']
         ],
 
 	menus: {
