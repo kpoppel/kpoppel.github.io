@@ -83,6 +83,7 @@
 
     ext.get_cloud_variable_from_list =  function(index, varname) {
         // Make an AJAX call to the keyvalue.xyz API
+		alert(ext.get_element_from_space_delimited_list(index, varname))
         $.ajax({
 			  type: "GET",
               url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname),
