@@ -25,6 +25,7 @@
 	    ['w', 'Set %s to %s', 'set_cloud_variable', 'variableURL', 'value'],
 	    ['R', 'New %s', 'create_cloud_variable', 'myName'],
 	    ['R', '%s', 'get_cloud_variable', 'variableURL'],
+	    ['r', 'eload Extension', 'reload'],
 		
         ],
 
