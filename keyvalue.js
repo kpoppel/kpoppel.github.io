@@ -23,9 +23,8 @@
 	    ['R', 'Create Cloud Variable %s', 'create_cloud_variable', 'myName'],
 	    ['R', 'Get Cloud Variable %s', 'get_cloud_variable', 'variableURL'],
 	    ['w', 'Set %s to %s', 'set_cloud_variable', 'variableURL', 'value'],
-	    ['R', 'New %s', 'create_cloud_variable', 'myName'],
-	    ['R', '%s', 'get_cloud_variable', 'variableURL'],
-	    ['r', 'eload Extension', 'reload'],
+	    ['R', 'New ☁ %s', 'create_cloud_variable', 'myName'],
+	    ['R', '☁ %s ', 'get_cloud_variable', 'variableURL'],
 		
         ],
 
@@ -74,14 +73,6 @@
       return { status:2, msg:'Ready' };
     };
 
-    ext.reload = function() {
-		ScratchExtensions.unregister('CloudVariable');
-		descriptor.blocks.push(['R', 'mynewvariable', get_cloud_variable, 'myVariable']);
-		descriptor.menus.k = ['editor', 'player', 'fullscreen'];
-		descriptor.blocks.push(['r', 'Menu! %m.k']);
-		ScratchExtensions.register('CloudVariable', descriptor, ext);
-	}	
-	
     ScratchExtensions.register('CloudVariable', descriptor, ext);
 })({});
 
