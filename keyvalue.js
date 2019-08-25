@@ -25,7 +25,6 @@
 	    ['w', '☁ Set %s to %s', 'set_cloud_variable', 'variableURL', 'value'],
 		['R', '☁ Get list element %n in %s', 'get_cloud_variable_from_list', 1, 'variableURL'],
 		['w', '☁ Set list element %n in %s to %s', 'set_cloud_variable_from_list', 1, 'variableURL', 'value'],
-		['-']
 		[' ', 'Get list element %n in %s', 'get_element_from_space_delimited_list', 1, 'list'],
 		[' ', 'Get list length of %s', 'get_space_delimited_list_length', 'list']
         ],
