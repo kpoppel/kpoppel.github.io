@@ -73,17 +73,8 @@
         });
     };
 
-    ext.get_element_from_space_delimited_list =  function(index, varname) {
-		return varname.split(' ')[index-1];
-	}
-
-    ext.get_space_delimited_list_length =  function(varname) {
-		return varname.split(' ').length;
-	}
-
-    ext.get_cloud_variable_from_list =  function(index, varname) {
+    ext.get_cloud_variable_from_list =  function(index, varname, callback) {
         // Make an AJAX call to the keyvalue.xyz API
-		alert(ext.get_element_from_space_delimited_list(index, varname))
         $.ajax({
 			  type: "GET",
               url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname),
@@ -95,7 +86,7 @@
 
 	}
 
-    ext.set_cloud_variable_in_list =  function(index, varname, value) {
+    ext.set_cloud_variable_in_list =  function(index, varname, value, callback) {
         // Make an AJAX call to the keyvalue.xyz API
 		let encoded_value = encodeURIComponent(encodeURIComponent(value));
         $.ajax({
@@ -107,6 +98,15 @@
               }
         });
 	}
+
+    ext.get_element_from_space_delimited_list =  function(index, varname) {
+		return varname.split(' ')[index-1];
+	}
+
+    ext.get_space_delimited_list_length =  function(varname) {
+		return varname.split(' ').length;
+	}
+
 
     ext._getStatus = function() {
       return { status:2, msg:'Ready' };
