@@ -23,11 +23,11 @@
 	    ['R', '☁ New %s', 'create_cloud_variable', 'myName'],
 	    ['R', '☁ Get %s ', 'get_cloud_variable', 'variableURL'],
 	    ['w', '☁ Set %s to %s', 'set_cloud_variable', 'variableURL', 'value'],
-		['R', '☁ Get list element %n in %s', get_cloud_variable_from_list, 1, 'variableURL'],
-		['w', '☁ Set list element %n in %s to %s', 1, set_cloud_varialbe_from_list, 'variableURL', 'value'],
+		['R', '☁ Get list element %n in %s', 'get_cloud_variable_from_list', 1, 'variableURL'],
+		['w', '☁ Set list element %n in %s to %s', 'set_cloud_variable_from_list', 1, 'variableURL', 'value'],
 		['-']
-		[' ', 'Get list element %n in %s', get_element_from_space_delimited_list, 1, 'list'],
-		[' ', 'Get list length of %s', get_space_delimited_list_length, 'list']
+		[' ', 'Get list element %n in %s', 'get_element_from_space_delimited_list', 1, 'list'],
+		[' ', 'Get list length of %s', 'get_space_delimited_list_length', 'list']
         ],
 
 	menus: {
