@@ -25,8 +25,8 @@
 	    ['w', '☁ Set %s to %s', 'set_cloud_variable', 'variableURL', 'value'],
 		['R', '☁ Get list element %n in %s', 'get_cloud_variable_from_list', 1, 'variableURL'],
 		['w', '☁ Set list element %n in %s to %s', 'set_cloud_variable_from_list', 1, 'variableURL', 'value'],
-		[' ', 'Get list element %n in %s', 'get_element_from_space_delimited_list', 1, 'list'],
-		[' ', 'Get list length of %s', 'get_space_delimited_list_length', 'list']
+		['r', 'Get list element %n in %s', 'get_element_from_space_delimited_list', 1, 'list'],
+		['r', 'Get list length of %s', 'get_space_delimited_list_length', 'list']
         ],
 
 	menus: {
@@ -53,7 +53,7 @@
 			  type: "GET",
               url: 'https://api.keyvalue.xyz/'+varname,
               success: function( variable_value ) {
-					let decoded_value = decodeURIComponent(variable_value);
+					let decoded_value = decodeURIComponent(decodeURIComponent(variable_value));
 					callback(decoded_value);
               }
         });
@@ -61,7 +61,8 @@
 
    ext.set_cloud_variable = function(varname, value, callback) {
         // Make an AJAX call to the keyvalue.xyz API
-		let encoded_value = encodeURIComponent(value);
+		// Encode and decode twice because the site does not like %2F in the string, so we encode the % also.
+		let encoded_value = encodeURIComponent(encodeURIComponent(value));
         $.ajax({
 			  type: "POST",
               url: 'https://api.keyvalue.xyz/'+varname+'/'+encoded_value,
@@ -78,7 +79,7 @@
 			  type: "GET",
               url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname),
               success: function( variable_value ) {
-					let decoded_value = decodeURIComponent(variable_value);
+					let decoded_value = decodeURIComponent(decodeURIComponent(variable_value));
 					callback(decoded_value);
               }
         });
@@ -87,7 +88,7 @@
 
     ext.set_cloud_variable_in_list =  function(index, varname, value) {
         // Make an AJAX call to the keyvalue.xyz API
-		let encoded_value = encodeURIComponent(value);
+		let encoded_value = encodeURIComponent((encodeURIComponent(value));
         $.ajax({
 			  type: "POST",
               url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname)+'/'+encoded_value,
