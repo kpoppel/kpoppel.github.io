@@ -53,16 +53,18 @@
 			  type: "GET",
               url: 'https://api.keyvalue.xyz/'+varname,
               success: function( variable_value ) {
-                  callback(variable_value);
+					let decoded_value = decodeURIComponent(variable_value);
+					callback(decoded_value);
               }
         });
     };
 
    ext.set_cloud_variable = function(varname, value, callback) {
         // Make an AJAX call to the keyvalue.xyz API
+		let encoded_value = encodeURIComponent(value);
         $.ajax({
 			  type: "POST",
-              url: 'https://api.keyvalue.xyz/'+varname+'/'+value,
+              url: 'https://api.keyvalue.xyz/'+varname+'/'+encoded_value,
 			  data: "",
               success: function( variable_url ) {
                   callback(variable_url);
@@ -76,7 +78,8 @@
 			  type: "GET",
               url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname),
               success: function( variable_value ) {
-                  callback(variable_value);
+					let decoded_value = decodeURIComponent(variable_value);
+					callback(decoded_value);
               }
         });
 
@@ -84,9 +87,10 @@
 
     ext.set_cloud_variable_in_list =  function(index, varname, value) {
         // Make an AJAX call to the keyvalue.xyz API
+		let encoded_value = encodeURIComponent(value);
         $.ajax({
 			  type: "POST",
-              url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname)+'/'+value,
+              url: 'https://api.keyvalue.xyz/'+ext.get_element_from_space_delimited_list(index, varname)+'/'+encoded_value,
 			  data: "",
               success: function( variable_url ) {
                   callback(variable_url);
