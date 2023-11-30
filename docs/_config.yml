@@ -28,7 +28,7 @@ twitter_username: n/a
 github_username:  kpoppel
 
 # Build settings
-theme: minima
+theme: hacker
 plugins:
   - jekyll-feed
 
