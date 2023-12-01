@@ -1,8 +1,8 @@
 ---
+title: Projekter og instruktioner
 layout: home
+author_profile: true
 ---
-
-# Projekter og instruktioner
 
 [Mærkater](./tags)
 

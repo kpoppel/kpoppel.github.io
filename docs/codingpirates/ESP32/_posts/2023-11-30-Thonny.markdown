@@ -1,0 +1,7 @@
+---
+  layout: single
+#  tags: ESP32 microPython
+---
+# Første tur med ESP32 og microPYthon
+
+Installer Thonny
