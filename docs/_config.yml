@@ -165,6 +165,7 @@ exclude:
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
   - /.frontmatter
+  - /bin
 keep_files:
   - .git
   - .svn
