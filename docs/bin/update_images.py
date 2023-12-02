@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import re
 import os
 import sys
@@ -14,25 +15,29 @@ def process_markdown_file(markdown_file):
     if not os.path.exists(images_directory):
         os.makedirs(images_directory)
 
-    # Initialize an image counter to keep track of image position
-    image_counter = 1
-
     # Extract image URLs from markdown file
-    image_urls = []
     with open(markdown_file, 'r') as f:
         markdown_content = f.read()
 
     # Match alt text and image urls not already referencing the assets directory (they don't need to be moved)
-    image_pattern = r'!\[([^]]*)]\((?!/assets/)([^)]*)\)'
+#    image_pattern = r'!\[([^]]*)]\((?!/assets/)([^)]*)\)'
+    image_pattern = r'!\[([^]]*)]\(([^)]*)\)'
     matches = re.findall(image_pattern, markdown_content)
+
+    # Initialize an image counter to keep track of image position
+    image_counter = 1
+    # Initialise data structure to hold mappings
+    image_urls = {}
     for match in matches:
-        image_urls.append(match[1])
+        image_urls[match[1]] = { "pos": image_counter}
+        #image_urls[match[1]] = { "md_name": match[1], "pos": image_counter}
+        image_counter += 1
 
     print(f"Images in md file: {image_urls}")
 
     # Map image URLs to corresponding image files
     image_files_dict = {}
-    for image_url in image_urls:
+    for image_url, value in image_urls.items():
         # Extract image filename from the URL
         image_filename = pathlib.Path(image_url).name
 
@@ -40,47 +45,46 @@ def process_markdown_file(markdown_file):
         image_file = None
         for root, _, files in os.walk(markdown_directory):
             for file in files:
-                if file.endswith(('.png', '.jpg', '.jpeg', '.gif')) and file.startswith(image_filename):
+                if file.endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg')) and file.startswith(image_filename):
                     image_file = os.path.join(root, file)
                     break
 
         if image_file is not None:
-            image_files_dict[image_url] = image_file
-
-    print(f"Images to process: {image_files_dict}")
-
-    # Process each image file
-    image_names_dict = {}  # Dictionary to store (image_base, image_name) pairs
-    for image_url, image_file in image_files_dict.items():
-        # Extract the base filename of the image without the extension
-        image_base = os.path.basename(image_file).split('.')[0]
-        # Generate a unique image name if one doesn't exist
-        if image_base not in image_names_dict:
-            #image_name = f'{image_base}-{image_counter}{os.path.splitext(image_file)[1]}'
-            image_name = f'image-{image_counter}{os.path.splitext(image_file)[1]}'
-            image_names_dict[image_file] = image_name
-            image_counter += 1
+            image_urls[image_url]['from'] = image_file
         else:
-            image_name = image_names_dict[image_file]
+            image_urls[image_url]['from'] = image_url
 
-        # Move the image file to the images directory and update the image name
-        image_destination = os.path.join(images_directory, image_name)
-        shutil.move(image_file, image_destination)
-        print(f"want to move {image_file} -> {image_destination}")
+        # Calculate destination path:
+        file_dir = os.path.dirname(image_urls[image_url]['from'])
+        if file_dir.startswith('/'):
+            # Don't attempt to move files already fetched from "/somewhere"
+            image_urls[image_url]['dest'] = image_urls[image_url]['from']
+        else: 
+            # Designate new filename and destination for other files
+            file_name_components = os.path.basename(image_urls[image_url]['from']).split('.')
+            extension = ".".join(file_name_components[1:])
+            image_name = f"image-{image_urls[image_url]['pos']}.{extension}"
+            image_urls[image_url]['dest'] = "/" + os.path.join(images_directory, image_name)
 
-    print(f"{len(image_files_dict)} new image to curent path: {image_names_dict}")
+        print(f"Images at position {image_urls[image_url]['pos']}:")
+        print(f"  md  : {image_url}")
+        print(f"  from: {image_urls[image_url]['from']}")
+        print(f"  dest: {image_urls[image_url]['dest']}")
+ 
+        # Move the file if from and dest are different:
+        if image_urls[image_url]['from'] != image_urls[image_url]['dest']:
+            #print(f"Moving that file {image_urls[image_url]['dest'][1:]}")
+            shutil.move(image_urls[image_url]['from'], image_urls[image_url]['dest'][1:])
 
     # Update image tags in the markdown file if any images were moved
-    if len(image_files_dict) > 0:
+    if len(image_urls) > 0:
         with open(markdown_file, 'r') as f:
             markdown_content = f.read()
 
-        new_markdown_content = re.sub(image_pattern, lambda match: f'!['+match.group(1)+'](/assets/images/' + markdown_basename + '/' + image_names_dict[image_files_dict[match.group(2)]] + ')', markdown_content)
-
-        print(new_markdown_content)
+        new_markdown_content = re.sub(image_pattern, lambda match: f'!['+match.group(1) + ']('+image_urls[match.group(2)]['dest'] + ')', markdown_content)
+        #print(new_markdown_content)
         with open(markdown_file, 'w') as f:
             f.write(new_markdown_content)
-
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:
