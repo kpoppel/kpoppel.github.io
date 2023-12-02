@@ -163,3 +163,13 @@ eggboiler_2.place = "Hotel"
 ```
 
 Et godt råd er derfor at undgå at ændre i klassevariable i instanser af klassen, da det kan være temmelig forvirrende at holde rede på om en instans har lavet en ændring, mens andre instanser deler samme klasse-variabels værdi.
+
+# Hvad er 'bedst'?
+
+Det kommer an på!  Hvis dit program er simpelt og bare skal skrives og køre, er procedurelle programmer langt det nemmeste.  Du skriver bare et hele i én køre, og laver funktioner hvis det giver mening at sætte dele af koden for sig selv, f.eks. fordi den skal køres mange gang forskellige steder, eller fordi det gør et nemmere at forstå programmet.
+
+Procedurelle programmer kan organiseres som OOP ved at dele det op i filer og have 'grænseflader' og datastrukturer kun til brug for en bestemt gruppe af funktioner.
+
+Nok langt det meste "embedded kode" i verden er skrevet procedurelt i C på denne måde.  Det er bare lidt gammeldags, og C++ tilføjer OOP til 'C'.
+
+Hvis programmet vokser lidt efter lidt, modellerer noget virkeligt, skal have en aftale grænseflade, eller skal være nemmere at udvide, er OOP som regel bedre og mere moderne.  Med OOP indkapsler du alle funktioner og data der hører til den samme 'ting', så hvis den skal kunne mere, er det kun her der skal ændres.

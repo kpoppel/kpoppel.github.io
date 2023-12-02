@@ -1,8 +1,8 @@
 main:
-  - title: "Artikler"
-    url: /year-archive/
   - title: "Coding Pirates"
     url: /codingpirates/
+  - title: "Artikler"
+    url: /year-archive/
   - title: "Kategorier"
     url: /categories/
 #  - title: "Tags"

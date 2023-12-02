@@ -27,7 +27,11 @@
 Kim Poulsen:
   name             : "Kim Poulsen"
   avatar           : "https://avatars.githubusercontent.com/u/4174578?v=4" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Leader, Tech nerd, Volunteer"
+  bio              : |
+                      I am passionate about technology, leadership and continual learning.
+                      My background in engineering and computer science and a real interest in
+                      people and teams, I have a proven track record of success in both the
+                      professional and volunteer spheres.
   location         : "Denmark"
   email            :
   links:
