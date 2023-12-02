@@ -1,9 +1,8 @@
 ---
+  title: Installation af Thonny og ESP32
   layout: single
 #  tags: ESP32 microPython
-  image_path: /assets/images/2023/
 ---
-# Første tur med ESP32 og microPYthon
 
 Download og installer [Thonny](https://thonny.org/) på din PC.
 
