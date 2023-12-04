@@ -1,6 +1,6 @@
 main:
   - title: "Coding Pirates"
-    url: /codingpirates/
+    url: https://cpegedal.github.io
   - title: "Artikler"
     url: /year-archive/
   - title: "Kategorier"
@@ -14,6 +14,7 @@ main:
 #  - title: "External Link"
 #    url: https://google.com
 
+# Sidebar menu
 #docs:
 #  - title: Getting Started
 #    children:

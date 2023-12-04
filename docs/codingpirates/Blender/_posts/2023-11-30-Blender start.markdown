@@ -1,5 +1,0 @@
----
-  layout: single
----
-
-Installer Thonny
